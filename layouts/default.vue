@@ -1,12 +1,11 @@
 <template>
     <div>
-        <header class="container shadow-sm bg-white p-4 mx-auto">
-            <nav class="mx-auto flex justify-between">
+        <header class="shadow-sm bg-white">
+            <nav class="container mx-auto p-4 flex justify-between">
                 <h1 class="font-bold text-lg text-cyan-500">Rick and Morty Characters</h1>
                 <ul class="flex gap-4">
-                    <li>All</li>
-                    <li>Rick</li>
-                    <li>Morty</li>
+                    <NuxtLink to="/">Home</NuxtLink>
+                    <NuxtLink to="/about">About</NuxtLink>
                 </ul>
             </nav>
         </header>
@@ -22,5 +21,8 @@
 </script>
 
 <style scoped>
-
+    .router-link-exact-active {
+        color: rgb(6 182 212 / 1);
+        font-weight: 700;
+    }
 </style>
