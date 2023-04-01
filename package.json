@@ -9,6 +9,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/apollo": "^5.0.0-alpha.6",
     "nuxt": "^3.3.2"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6"
   }
 }
