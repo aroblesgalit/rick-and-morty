@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="rounded overflow-hidden shadow-lg">
         <img :src="character.image" :alt="character.name">
         <h3>{{ character.name }}</h3>
         <p>{{ character.species }}</p>
