@@ -1,8 +1,10 @@
 <template>
-    <div class="rounded overflow-hidden shadow-lg">
-        <img :src="character.image" :alt="character.name">
-        <h3>{{ character.name }}</h3>
-        <p>{{ character.species }}</p>
+    <div class="rounded-lg overflow-hidden shadow-lg p-5 text-center">
+        <div class="relative flex justify-center">
+            <img class="rounded" :src="character.image" :alt="character.name">
+            <h3 class="bg-white border-solid border px-6 py-2 text-center text-lg rounded-lg w-max absolute">{{ character.name }}</h3>
+        </div>
+        <p class="mt-6">{{ character.species }}</p>
     </div>
 </template>
 
@@ -12,6 +14,9 @@
 
 <style scoped>
     img {
-        margin: 0;
+        max-width: 200px;
+    }
+    h3 {
+        bottom: -20px;
     }
 </style>
