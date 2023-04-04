@@ -4,6 +4,7 @@ export default defineNuxtConfig({
         '@nuxtjs/apollo',
         '@nuxtjs/tailwindcss'
     ],
+    css: ['@/assets/css/tailwind.css'],
 
     apollo: {
         clients: {
