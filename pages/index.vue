@@ -14,8 +14,8 @@
 <script lang="ts" setup>
 
 const query = gql`
-    query getCharacters {
-        characters {
+    query getCharacters($page: Int) {
+        characters(page: $page) {
             info {
                 count
                 pages
@@ -28,7 +28,12 @@ const query = gql`
         }
     }
 `
-const { data } = await useAsyncQuery(query)
+
+let variables = {
+    page: 4
+}
+
+const { data } = await useAsyncQuery(query, variables)
 </script>
 
 <style scoped>
