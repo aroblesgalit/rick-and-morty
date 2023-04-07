@@ -1,6 +1,6 @@
 <template>
-    <div class="card rounded-lg overflow-hidden shadow-md">
-        <img :src="character.image" :alt="character.name">
+    <div class="card rounded-lg overflow-hidden shadow-md h-full">
+        <img class="w-full" :src="character.image" :alt="character.name">
         <div class="text-white px-4 pb-4">
             <h3 class="text-lg leading-5 text-[#97ce4c] font-bold mb-1">{{ character.name }}</h3>
             <p class="text-sm font-light">{{ character.species }}</p>
