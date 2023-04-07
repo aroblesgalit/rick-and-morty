@@ -11,6 +11,8 @@
 
 <script lang="ts" setup>
 
+const { page } = useRoute().params;
+
 const query = gql`
     query getCharacters($page: Int) {
         characters(page: $page) {
@@ -28,7 +30,7 @@ const query = gql`
 `
 
 let variables = {
-    page: 36
+    page: page
 }
 
 const { data } = await useAsyncQuery(query, variables)

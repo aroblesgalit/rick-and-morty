@@ -38,7 +38,6 @@ pink: #e89ac7
         border: 1px solid #97ce4c;
     }
     img {
-        display: block;
         -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
         mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
     }
