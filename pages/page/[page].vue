@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 
 const { page } = useRoute().params;
 
@@ -30,10 +30,14 @@ const query = gql`
 `
 
 let variables = {
-    page: page
+    page: parseInt(page)
 }
 
 const { data } = await useAsyncQuery(query, variables)
+
+if (!data) {
+    throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
+}
 </script>
 
 <style scoped>

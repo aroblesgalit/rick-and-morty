@@ -6,6 +6,7 @@
                 <CharacterCard :character="char" />
             </div>
         </div>
+        <NuxtLink to="/page/24" class="pt-6">Page 24</NuxtLink>
     </div>
 </template>
 
@@ -28,7 +29,7 @@ const query = gql`
 `
 
 let variables = {
-    page: 36
+    page: 1
 }
 
 const { data } = await useAsyncQuery(query, variables)
