@@ -5,7 +5,7 @@
                 <h1 class="font-bold text-lg text-cyan-500">Rick and Morty Characters</h1>
                 <ul class="flex gap-4">
                     <NuxtLink to="/">Home</NuxtLink>
-                    <NuxtLink to="/about">About</NuxtLink>
+                    <NuxtLink to="/page/1">Characters</NuxtLink>
                 </ul>
             </nav>
         </header>
