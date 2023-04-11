@@ -1,9 +1,19 @@
 <template>
     <div>
-        <h2 class="mb-4">Count: {{ data.characters.info.count }} | Pages: {{ data.characters.info.pages }}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div v-for="char in data.characters.results">
                 <CharacterCard :character="char" />
+            </div>
+        </div>
+        <div class="flex justify-end gap-x-4 mt-4">
+            <div>Showing {{ 20 * parseInt(page) }} of {{ data.characters.info.count }}</div>
+            <div class="flex gap-x-2">
+                <div v-if="page > 1">
+                    <NuxtLink :to="`/page/${parseInt(page) - 1}`">Prev</NuxtLink>
+                </div>
+                <div v-if="page < data.characters.info.pages">
+                    <NuxtLink :to="`/page/${parseInt(page) + 1}`">Next</NuxtLink>
+                </div>
             </div>
         </div>
     </div>
