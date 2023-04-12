@@ -2,7 +2,7 @@
     <div>
         <header class="shadow-sm bg-white">
             <nav class="container mx-auto p-4 flex justify-between">
-                <h1 class="font-bold text-lg text-cyan-500">Rick and Morty Characters</h1>
+                <h1 class="font-bold text-lg text-[#00b5cc]">Rick and Morty Characters</h1>
                 <ul class="flex gap-4">
                     <NuxtLink to="/">Home</NuxtLink>
                     <NuxtLink to="/page/1">Characters</NuxtLink>
@@ -22,7 +22,7 @@
 
 <style scoped>
     .router-link-exact-active {
-        color: rgb(6 182 212 / 1);
+        color: #00b5cc;
         font-weight: 700;
     }
 </style>
