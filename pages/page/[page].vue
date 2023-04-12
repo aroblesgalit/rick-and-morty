@@ -6,13 +6,13 @@
             </div>
         </div>
         <div class="flex justify-end gap-x-4 mt-4">
-            <div>Showing {{ 20 * parseInt(page) }} of {{ data.characters.info.count }}</div>
+            <div>Showing {{ (20 * pageInt) - 19 }}-{{ (20 * pageInt) - 19 + data.characters.results.length - 1 }} of {{ data.characters.info.count }}</div>
             <div class="flex gap-x-2">
                 <div v-if="page > 1">
-                    <NuxtLink :to="`/page/${parseInt(page) - 1}`">Prev</NuxtLink>
+                    <NuxtLink :to="`/page/${pageInt - 1}`">Prev</NuxtLink>
                 </div>
                 <div v-if="page < data.characters.info.pages">
-                    <NuxtLink :to="`/page/${parseInt(page) + 1}`">Next</NuxtLink>
+                    <NuxtLink :to="`/page/${pageInt + 1}`">Next</NuxtLink>
                 </div>
             </div>
         </div>
@@ -39,8 +39,10 @@ const query = gql`
     }
 `
 
+let pageInt = parseInt(page);
+
 let variables = {
-    page: parseInt(page)
+    page: pageInt
 }
 
 const { data } = await useAsyncQuery(query, variables)
