@@ -13,5 +13,6 @@ export default defineNuxtConfig({
     },
     app: {
         baseURL: '/rick-and-morty/'
-    }
+    },
+    ssr: false
 })
