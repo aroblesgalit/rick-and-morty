@@ -31,6 +31,7 @@ const query = gql`
                 pages
             },
             results {
+                id
                 name
                 image
                 species

@@ -12,5 +12,8 @@ export default defineNuxtConfig({
                 httpEndpoint: 'https://rickandmortyapi.com/graphql'
             }
         }
+    },
+    app: {
+        baseURL: '/rick-and-morty/'
     }
 })
