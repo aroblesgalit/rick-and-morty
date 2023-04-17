@@ -1,11 +1,13 @@
 <template>
-    <div class="card rounded-lg overflow-hidden shadow-md h-full relative">
-        <img class="w-full" :src="character.image" :alt="character.name">
-        <div class="text-white px-4 pb-4">
-            <h3 class="text-lg leading-5 text-[#f0e14a] font-bold mb-1">{{ character.name }}</h3>
-            <p class="text-sm font-light">{{ character.species }}</p>
+    <NuxtLink :to="`/character/${character.id}`">
+        <div class="card rounded-lg overflow-hidden shadow-md h-full relative">
+            <img class="w-full" :src="character.image" :alt="character.name">
+            <div class="text-white px-4 pb-4">
+                <h3 class="text-lg leading-5 text-[#f0e14a] font-bold mb-1">{{ character.name }}</h3>
+                <p class="text-sm font-light">{{ character.species }}</p>
+            </div>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup>

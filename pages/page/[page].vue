@@ -47,7 +47,7 @@ let variables = {
 }
 
 const { data } = await useAsyncQuery(query, variables)
-
+console.log(data)
 if (!data) {
     throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
 }
