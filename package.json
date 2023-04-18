@@ -16,7 +16,9 @@
     "nuxt": "^3.3.2"
   },
   "dependencies": {
-    "graphql-tag": "^2.12.6"
+    "@pinia/nuxt": "^0.4.8",
+    "graphql-tag": "^2.12.6",
+    "pinia": "^2.0.34"
   },
   "overrides": {
     "vue": "latest"
