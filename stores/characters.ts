@@ -22,38 +22,16 @@ interface Character {
 }
 
 export const useCharactersStore = defineStore('charactersStore', () => {
-    const charactersList = ref([{
-        "id": "86",
-        "name": "Cyclops Rick",
-        "image": "https://rickandmortyapi.com/api/character/avatar/86.jpeg",
-        "species": "Humanoid",
-        "status": "Dead",
-        "gender": "Male",
-        "origin": {
-          "name": "unknown"
-        },
-        "location": {
-          "name": "Citadel of Ricks"
-        },
-        "episode": [
-          {
-            "name": "Close Rick-counters of the Rick Kind",
-            "air_date": "April 7, 2014"
-          },
-          {
-            "name": "The Rickshank Rickdemption",
-            "air_date": "April 1, 2017"
-          },
-          {
-            "name": "The Ricklantis Mixup",
-            "air_date": "September 10, 2017"
-          }
-        ]
-      }]);
+    const pagesVisited: Ref<number[]> = ref([]);
+    const charactersList: Ref<Character[]> = ref([]);
 
     function addCharacterToList(char: Character) {
         charactersList.value.push(char)
     }
 
-    return { addCharacterToList, charactersList }
+    function addPageToList(page: number) {
+        pagesVisited.value.push(page)
+    }
+
+    return { addPageToList, addCharacterToList, charactersList }
 });

@@ -20,6 +20,12 @@
 </template>
 
 <script setup>
+import { useCharactersStore } from '@stores/characters'
+import { storeToRefs } from 'pinia'
+
+const characterStore = useCharactersStore();
+const { addCharacterToList } = characterStore;
+const { characterList } = storeToRefs(characterStore);
 
 const { page } = useRoute().params;
 
