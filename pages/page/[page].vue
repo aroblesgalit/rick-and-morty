@@ -2,7 +2,7 @@
     <div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             <div v-for="char in data.characters.results">
-                <CharacterCard :character="char" />
+                <CharacterCard :character="char" :key="char.id" />
             </div>
         </div>
         <div class="flex justify-end items-center gap-x-4 my-6">
@@ -47,7 +47,7 @@ let variables = {
 }
 
 const { data } = await useAsyncQuery(query, variables)
-console.log(data)
+
 if (!data) {
     throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
 }

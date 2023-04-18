@@ -17,5 +17,8 @@
   },
   "dependencies": {
     "graphql-tag": "^2.12.6"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

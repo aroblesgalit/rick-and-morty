@@ -1,6 +1,7 @@
 <template>
     <div>
-        {{ data.character }}
+        ID: {{ id }}
+        <!-- {{ data.character }} -->
         <!-- <h2>{{ data.character.name }}</h2>
         <img :src="data.character.image" :alt="data.name">
         <p>{{ data.character.species }}</p>
