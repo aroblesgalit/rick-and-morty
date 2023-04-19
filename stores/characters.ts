@@ -21,17 +21,22 @@ interface Character {
     episode: Episode[]
 }
 
+interface Page {
+    [page: string]: Character[]
+}
+
+
 export const useCharactersStore = defineStore('charactersStore', () => {
-    const pagesVisited: Ref<number[]> = ref([]);
-    const charactersList: Ref<Character[]> = ref([]);
+    // const pagesVisited: Ref<number[]> = ref([]);
+    const charactersList: Ref<Page> = ref({});
 
-    function addCharacterToList(char: Character) {
-        charactersList.value.push(char)
+    function addCharacterToList(page: string, characters: Character[]) {
+        charactersList.value.page ? charactersList.value.page = characters : Object.assign(charactersList, { page: characters})
     }
 
-    function addPageToList(page: number) {
-        pagesVisited.value.push(page)
-    }
+    // function addPageToList(page: number) {
+    //     pagesVisited.value.push(page)
+    // }
 
-    return { addPageToList, addCharacterToList, charactersList }
+    return { addCharacterToList, charactersList }
 });
