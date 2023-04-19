@@ -31,7 +31,8 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     const charactersList: Ref<Page> = ref({});
 
     function addCharacterToList(page: string, characters: Character[]) {
-        charactersList.value[page] ? charactersList.value[page] = characters : Object.assign(charactersList, { page: characters})
+        if (page in charactersList.value) return;
+        Object.assign(charactersList, { page: characters})
     }
 
     // function addPageToList(page: number) {
