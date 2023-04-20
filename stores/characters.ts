@@ -41,15 +41,16 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     }
 
     function setCharacterDetail(id: string) {
-        const filterChar = charactersList.filter(char => char.id == id);
+        const filterChar = charactersList.value.filter(char => char.id == id);
         characterDetail.value = filterChar[0];
+        console.log(characterDetail.value)
     }
 
     // function addPageToList(page: number) {
     //     pagesVisited.value.push(page)
     // }
 
-    return { addCharacterToList, setCharacterDetail, addPage, charactersList, pages }
+    return { addCharacterToList, setCharacterDetail, addPage, charactersList, characterDetail, pages }
 });
 
 // export const useCharactersStore = defineStore('characters-store', {
