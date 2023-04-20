@@ -25,7 +25,7 @@ import { storeToRefs } from 'pinia'
 
 const characterStore = useCharactersStore();
 const { addCharacterToList } = characterStore;
-const { characterList } = storeToRefs(characterStore);
+const { charactersList } = storeToRefs(characterStore);
 
 const { page } = useRoute().params;
 
@@ -41,6 +41,18 @@ const query = gql`
                 name
                 image
                 species
+                status
+                gender
+                origin {
+                    name
+                }
+                location {
+                    name
+                }
+                episode {
+                    name
+                    air_date
+                }
             }
         }
     }
@@ -55,13 +67,13 @@ let variables = {
 let res;
 let inf;
 
-if (page in characterList) {
-    res = characterList[page];
+if (page in charactersList) {
+    res = charactersList[page];
 } else {
     const { data } = await useAsyncQuery(query, variables)
 
-    res = data.characters.results;
-    inf = data.characters.info;
+    res = data._rawValue.characters.results;
+    inf = data._rawValue.characters.info;
     
     addCharacterToList(page, res);
 
@@ -69,8 +81,6 @@ if (page in characterList) {
         throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
     }
 }
-
-console.log(characterList)
 
 </script>
 
