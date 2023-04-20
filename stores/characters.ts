@@ -23,7 +23,7 @@ interface Character {
 
 export const useCharactersStore = defineStore('charactersStore', () => {
     // const pagesVisited: Ref<number[]> = ref([]);
-    const pages = ref([]);
+    const pages: Ref<string[]> = ref([]);
     const charactersList: Ref<Character[]> = ref([]);
     const characterDetail = ref({});
 
@@ -32,6 +32,12 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     function addCharacterToList(page: string, character: Character) {
         if (page in pages.value) return;
         charactersList.value.push(character)
+    }
+
+    function addPage(page: string) {
+        if (page in pages.value) return;
+        pages.value.push(page)
+        console.log(pages.value)
     }
 
     function setCharacterDetail(id: string) {
@@ -43,7 +49,7 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     //     pagesVisited.value.push(page)
     // }
 
-    return { addCharacterToList, setCharacterDetail, charactersList }
+    return { addCharacterToList, setCharacterDetail, addPage, charactersList, pages }
 });
 
 // export const useCharactersStore = defineStore('characters-store', {

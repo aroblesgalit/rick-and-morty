@@ -1,6 +1,6 @@
 <template>
     <div>
-        ID: {{ id }}
+        ID: {{ characterDetail.id }}
         <!-- {{ data.character }} -->
         <!-- <h2>{{ data.character.name }}</h2>
         <img :src="data.character.image" :alt="data.name">
@@ -13,42 +13,17 @@
 </template>
 
 <script setup>
+import { useCharactersStore } from '../../stores/characters';
+import { storeToRefs } from 'pinia';
+
+const charactersStore = useCharactersStore();
+const { setCharacterDetail } = charactersStore;
+const { characterDetail } = storeToRefs(charactersStore);
 
 const { id } = useRoute().params;
 
-const query = gql`
-    query getCharacter($id: String) {
-        character(id: $id) {
-            name
-            image
-            species
-            status
-            gender
-            origin {
-                name
-            }
-            location {
-                name
-            }
-            episode {
-                name
-                air_date
-            }
-        }
-    }
-`
+setCharacterDetail(id);
 
-// let idInt = parseInt(id);
-
-let variables = {
-    id: id
-}
-
-const { data } = await useAsyncQuery(query, variables)
-console.log(data)
-if (!data) {
-    throw createError({ status: 404, statusMessage: 'Character not found', fatal: true })
-}
 </script>
 
 <style scoped>
