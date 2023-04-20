@@ -1,4 +1,5 @@
 import  { defineStore } from 'pinia'
+import { isEmpty } from 'lodash'
 
 interface Name {
     name: string
@@ -26,31 +27,34 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     const pages: Ref<string[]> = ref([]);
     const charactersList: Ref<Character[]> = ref([]);
     const characterDetail = ref({});
+    const totalChars = ref({});
 
     // const getCharactersList = computed(() => charactersList)
 
     function addCharacterToList(page: string, character: Character) {
-        if (page in pages.value) return;
+        if (pages.value.includes(page)) return;
         charactersList.value.push(character)
     }
 
     function addPage(page: string) {
-        if (page in pages.value) return;
+        if (pages.value.includes(page)) return;
         pages.value.push(page)
-        console.log(pages.value)
     }
 
     function setCharacterDetail(id: string) {
         const filterChar = charactersList.value.filter(char => char.id == id);
         characterDetail.value = filterChar[0];
-        console.log(characterDetail.value)
     }
 
+    function setTotalChars(value: Object) {
+        if(isEmpty(totalChars.value))
+        totalChars.value = value;
+    }
     // function addPageToList(page: number) {
     //     pagesVisited.value.push(page)
     // }
 
-    return { addCharacterToList, setCharacterDetail, addPage, charactersList, characterDetail, pages }
+    return { addCharacterToList, setCharacterDetail, addPage, setTotalChars, charactersList, characterDetail, pages, totalChars }
 });
 
 // export const useCharactersStore = defineStore('characters-store', {

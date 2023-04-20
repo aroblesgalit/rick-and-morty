@@ -1,0 +1,1 @@
+import{f as o,b as t,o as s,e}from"./entry.d6d07401.js";const c={},n=e("h2",null,"Home",-1),a=e("p",null,"Please enjoy this simple Nuxt app providing you with a collection of Rick and Morty characters. I developed this project to help me learn the basics of Nuxt...",-1),r=[n,a];function i(l,_){return s(),t("div",null,r)}const p=o(c,[["render",i]]);export{p as default};
