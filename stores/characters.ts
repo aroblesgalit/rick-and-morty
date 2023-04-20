@@ -21,79 +21,49 @@ interface Character {
     episode: Episode[]
 }
 
-interface Page {
-    [key: string]: Character[]
-}
-
-/*
 export const useCharactersStore = defineStore('charactersStore', () => {
     // const pagesVisited: Ref<number[]> = ref([]);
-    const charactersList: Ref<Page> = ref({
-        '0': {
-            id: '0',
-            name: '0',
-            image: '0',
-            species: '0',
-            status: '0',
-            gender: '0',
-            origin: {
-                name: '0'
-            },
-            location: {
-                name: '0'
-            },
-            episode: {
-                name: '0',
-                air_date: '0'
-            }
-        },
-        '00': {
-            id: '00',
-            name: '00',
-            image: '00',
-            species: '00',
-            status: '00',
-            gender: '00',
-            origin: {
-                name: '00'
-            },
-            location: {
-                name: '00'
-            },
-            episode: {
-                name: '00',
-                air_date: '00'
-            }
-        }
-    });
+    const pages = ref([]);
+    const charactersList: Ref<Character[]> = ref([]);
+    const characterDetail = ref({});
 
-    function addCharacterToList(page: string, characters: Character[]) {
-        if (page in charactersList.value) return;
-        Object.assign(charactersList, { page: characters})
-        console.log(charactersList)
+    // const getCharactersList = computed(() => charactersList)
+
+    function addCharacterToList(page: string, character: Character) {
+        if (page in pages.value) return;
+        charactersList.value.push(character)
+    }
+
+    function setCharacterDetail(id: string) {
+        const filterChar = charactersList.filter(char => char.id == id);
+        characterDetail.value = filterChar[0];
     }
 
     // function addPageToList(page: number) {
     //     pagesVisited.value.push(page)
     // }
 
-    return { addCharacterToList, charactersList }
-});*/
+    return { addCharacterToList, setCharacterDetail, charactersList }
+});
 
-export const useCharactersStore = defineStore({
-    id: 'characters-store',
-    state: () => {
-        return {
-            charactersList: {},
-        }
-    },
-    actions: {
-        addCharacterToList(page: string, characters: Character[]) {
-            if (page in this.charactersList) return;
-            Object.assign(this.charactersList, { page: characters })
-        },
-    },
-    getters: {
-        charactersList: state => state.charactersList,
-    }
-})
+// export const useCharactersStore = defineStore('characters-store', {
+//     state: () => {
+//         return {
+//             pages: [],
+//             charactersList: [],
+//         }
+//     },
+//     actions: {
+//         addCharacterToList(page: string, characters: Character[]) {
+//             if (page in this.pages) return;
+//             characters.
+//             // this.charactersList = {
+//             //     ...this.charactersList,
+//             //     [page]: characters
+//             // }
+//         },
+//     },
+//     getters: {
+//         getCharactersList: state => state.charactersList,
+//     }
+// })

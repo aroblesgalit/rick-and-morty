@@ -75,7 +75,7 @@ if (page in charactersList) {
     res = data._rawValue.characters.results;
     inf = data._rawValue.characters.info;
     
-    addCharacterToList(page, res);
+    res.forEach(char => addCharacterToList(page, char))
 
     if (!data) {
         throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
