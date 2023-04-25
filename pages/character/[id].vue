@@ -20,6 +20,10 @@ const charactersStore = useCharactersStore();
 const { setCharacterDetail } = charactersStore;
 const { characterDetail } = storeToRefs(charactersStore);
 
+if (!characterDetail) {
+    throw createError({ statusCode: 404, statusMessage: 'Character not found.' });
+}
+
 setCharacterDetail(id);
 
 </script>
