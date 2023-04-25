@@ -13,7 +13,6 @@
 <script setup>
 import { useCharactersStore } from '../../stores/characters';
 import { storeToRefs } from 'pinia';
-import { isEmpty } from 'lodash'
 
 const { id } = useRoute().params;
 
@@ -22,10 +21,6 @@ const { setCharacterDetail } = charactersStore;
 const { characterDetail } = storeToRefs(charactersStore);
 
 setCharacterDetail(id);
-
-if (isEmpty(characterDetail)) {
-    throw createError({ statusCode: 404, statusMessage: 'Character not found.' });
-}
 
 </script>
 

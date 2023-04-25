@@ -43,6 +43,9 @@ export const useCharactersStore = defineStore('charactersStore', () => {
 
     function setCharacterDetail(id: string) {
         const filterChar = charactersList.value.filter(char => char.id == id);
+        if (filterChar.length === 0) {
+            throw createError({ statusCode: 404, statusMessage: 'Character not found.' });
+        }
         characterDetail.value = filterChar[0];
     }
 
