@@ -1,4 +1,4 @@
-import{g as d,_ as g}from"./CharacterCard.003b406a.js";import{_ as m}from"./nuxt-link.c263b9ef.js";import{g as p,h,c as a,a as t,F as x,r as f,u as o,t as y,i as n,j as v,l as w,o as r,b as C}from"./entry.a4ae6de0.js";const N={class:"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"},b={class:"flex justify-end items-center gap-x-4 my-6"},k={class:"flex gap-x-2"},F={__name:"index",async setup(q){let e,c;const i=d`
+import{g as d,_ as g}from"./CharacterCard.c3d5121a.js";import{_ as m}from"./nuxt-link.54debaa1.js";import{g as p,h,c as a,a as t,F as x,r as f,u as o,t as y,i as n,j as v,l as w,o as r,b as C}from"./entry.01131954.js";const N={class:"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"},b={class:"flex justify-end items-center gap-x-4 my-6"},k={class:"flex gap-x-2"},F={__name:"index",async setup(q){let e,c;const i=d`
     query getCharacters() {
         characters() {
             info {
