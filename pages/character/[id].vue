@@ -1,5 +1,6 @@
 <template>
     <div>
+        <a href="" @click.prevent="$router.back()">Go back</a>
         <h2>{{ characterDetail.name }}</h2>
         <img :src="characterDetail.image" :alt="characterDetail.name">
         <p>{{ characterDetail.species }}</p>
