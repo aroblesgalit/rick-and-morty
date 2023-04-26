@@ -16,7 +16,16 @@
 </template>
 
 <script setup>
-    const { characterDetail } = defineProps(['characterDetail'])
+import { useCharactersStore } from '../stores/characters';
+import { storeToRefs } from 'pinia';
+
+const { id } = defineProps(['id'])
+
+const charactersStore = useCharactersStore();
+const { setCharacterDetail } = charactersStore;
+const { characterDetail } = storeToRefs(charactersStore);
+
+setCharacterDetail(id);
 </script>
 
 <style scoped>
