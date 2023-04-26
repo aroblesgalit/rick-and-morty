@@ -39,8 +39,8 @@ setCharacterDetail(id);
         border-left: none;
         border-bottom: none;
         border-radius: 0 10px 0;
-        width: 100px;
-        height: 150px;
+        width: 90px;
+        height: 140px;
     }
     
     .char-details::after {
@@ -53,7 +53,7 @@ setCharacterDetail(id);
         border-top: none;
         border-left: none;
         border-radius: 0 0 10px;
-        width: 150px;
-        height: 100px;
+        width: 180px;
+        height: 60px;
     }
 </style>
