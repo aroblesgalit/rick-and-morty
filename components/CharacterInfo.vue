@@ -1,0 +1,50 @@
+<template>
+    <div class="flex flex-col md:flex-row gap-4 mt-4">
+        <div class="basis-full md:basis-1/2">
+            <img class="md:w-full rounded-lg" :src="characterDetail.image" :alt="characterDetail.name">
+        </div>
+        <div class="char-details basis-full md:basis-1/2 relative p-4 pl-0">
+            <h2 class="text-5xl font-black text-[#f0e14a]">{{ characterDetail.name }}</h2>
+            <p class="text-2xl mb-4 font-bold text-gray-500">{{ characterDetail.species }}</p>
+            <p class="mb-1"><span class="font-bold">Status:</span> {{ characterDetail.status }}</p>
+            <p class="mb-1"><span class="font-bold">Gender:</span> {{ characterDetail.gender }}</p>
+            <p class="mb-1"><span class="font-bold">Origin:</span> {{ characterDetail.origin.name }}</p>
+            <p class="mb-1"><span class="font-bold">Location:</span> {{ characterDetail.location.name }}</p>
+            <p><span class="font-semibold">Episodes:</span> <span v-for="episode in characterDetail.episode">{{ episode.name + ' (' + episode.air_date + '), ' }}</span></p>
+        </div>
+    </div>
+</template>
+
+<script setup>
+    const { characterDetail } = defineProps(['characterDetail'])
+</script>
+
+<style scoped>
+    .char-details::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 2px solid #97ce4c;
+        border-left: none;
+        border-bottom: none;
+        border-radius: 0 10px 0;
+        width: 100px;
+        height: 150px;
+    }
+    
+    .char-details::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border: 2px solid #97ce4c;
+        border-top: none;
+        border-left: none;
+        border-radius: 0 0 10px;
+        width: 150px;
+        height: 100px;
+    }
+</style>
