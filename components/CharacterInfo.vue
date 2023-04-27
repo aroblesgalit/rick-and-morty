@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col md:flex-row gap-4 mt-4">
-        <div class="basis-full md:basis-1/2">
+        <div class="basis-full md:basis-1/2 relative">
             <img class="md:w-full rounded-lg" :src="characterDetail.image" :alt="characterDetail.name">
         </div>
         <div class="char-details basis-full md:basis-1/2 relative p-4 pl-0">
@@ -29,6 +29,20 @@ setCharacterDetail(id);
 </script>
 
 <style scoped>
+    div:has(> img)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -20px;
+        left: 20px;
+        border: 2px solid #f0e14a;
+        border-top: none;
+        border-right: none;
+        border-radius: 0 0 0 10px;
+        width: 90px;
+        height: 160px;
+    }
+
     .char-details::before {
         content: '';
         display: block;
