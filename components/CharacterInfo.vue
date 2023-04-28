@@ -10,7 +10,7 @@
             <p class="mb-1"><span class="font-bold">Gender:</span> {{ characterDetail.gender }}</p>
             <p class="mb-1"><span class="font-bold">Origin:</span> {{ characterDetail.origin.name }}</p>
             <p class="mb-1"><span class="font-bold">Location:</span> {{ characterDetail.location.name }}</p>
-            <p><span class="font-semibold">Episodes:</span> <span v-for="episode in characterDetail.episode">{{ episode.name + ' (' + episode.air_date + '), ' }}</span></p>
+            <p><span class="font-bold">Episodes:</span> <span v-for="episode in characterDetail.episode">{{ episode.name + ' (' + episode.air_date + '), ' }}</span></p>
         </div>
     </div>
 </template>
