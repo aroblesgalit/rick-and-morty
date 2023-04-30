@@ -22,12 +22,41 @@ interface Character {
     episode: Episode[]
 }
 
+const queryGetCharacters = gql`
+    query getCharacters($page: Int) {
+        characters(page: $page) {
+            info {
+                count
+                pages
+            },
+            results {
+                id
+                name
+                image
+                species
+                status
+                gender
+                origin {
+                    name
+                }
+                location {
+                    name
+                }
+                episode {
+                    name
+                    air_date
+                }
+            }
+        }
+    }
+`
+
 export const useCharactersStore = defineStore('charactersStore', () => {
-    // const pagesVisited: Ref<number[]> = ref([]);
+    
     const pages: Ref<string[]> = ref([]);
     const charactersList: Ref<Character[]> = ref([]);
     const characterDetail = ref({});
-    const totalChars = ref({});
+    const charactersInfo = ref({});
 
     // const getCharactersList = computed(() => charactersList)
 
@@ -49,35 +78,10 @@ export const useCharactersStore = defineStore('charactersStore', () => {
         characterDetail.value = filterChar[0];
     }
 
-    function setTotalChars(value: Object) {
-        if(isEmpty(totalChars.value))
-        totalChars.value = value;
+    function setCharactersInfo(value: Object) {
+        if(isEmpty(charactersInfo.value))
+        charactersInfo.value = value;
     }
-    // function addPageToList(page: number) {
-    //     pagesVisited.value.push(page)
-    // }
 
-    return { addCharacterToList, setCharacterDetail, addPage, setTotalChars, charactersList, characterDetail, pages, totalChars }
+    return { addCharacterToList, setCharacterDetail, addPage, setCharactersInfo, charactersList, characterDetail, pages, charactersInfo }
 });
-
-// export const useCharactersStore = defineStore('characters-store', {
-//     state: () => {
-//         return {
-//             pages: [],
-//             charactersList: [],
-//         }
-//     },
-//     actions: {
-//         addCharacterToList(page: string, characters: Character[]) {
-//             if (page in this.pages) return;
-//             characters.
-//             // this.charactersList = {
-//             //     ...this.charactersList,
-//             //     [page]: characters
-//             // }
-//         },
-//     },
-//     getters: {
-//         getCharactersList: state => state.charactersList,
-//     }
-// })

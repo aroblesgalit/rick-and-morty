@@ -10,8 +10,8 @@ import { useCharactersStore } from '../../stores/characters'
 import { storeToRefs } from 'pinia'
 
 const charactersStore = useCharactersStore();
-const { addCharacterToList, addPage, setTotalChars } = charactersStore;
-const { charactersList, pages, totalChars } = storeToRefs(charactersStore);
+const { addCharacterToList, addPage, setCharactersInfo } = charactersStore;
+const { charactersList, pages, charactersInfo } = storeToRefs(charactersStore);
 
 const { page } = useRoute().params;
 
@@ -57,7 +57,7 @@ if (pages.value.includes(page)) {
     for (let i = (pageInt * 20) - 19; i <= (pageInt * 20); i++) {
         res.push(charactersList.value.find(char => char.id == i))
     }
-    inf = totalChars.value;
+    inf = charactersInfo.value;
     console.log('Data exists. Populating page with existing data.');
 } else {
     const { data } = await useAsyncQuery(query, variables)
@@ -65,7 +65,7 @@ if (pages.value.includes(page)) {
     res = data._rawValue.characters.results;
     inf = data._rawValue.characters.info;
 
-    setTotalChars(inf);
+    setCharactersInfo(inf);
     
     res.forEach(char => addCharacterToList(page, char));
 
