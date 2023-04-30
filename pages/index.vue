@@ -10,6 +10,19 @@
 </script>
 
 <style scoped>
+/* 
+Logo name
+blue: #00b5cc
+green: #b2df28
+
+Palette
+brown: #44281d
+peach: #e4a788
+yellow: #f0e14a
+green: #97ce4c
+pink: #e89ac7
+*/
+
     p::before {
         content: '';
         display: block;
