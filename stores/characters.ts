@@ -57,6 +57,7 @@ export const useCharactersStore = defineStore('charactersStore', () => {
     const charactersList: Ref<Character[]> = ref([]);
     const characterDetail = ref({});
     const charactersInfo = ref({});
+    const charactersResults: Ref<Character[]> = ref([]);
 
     // const getCharactersList = computed(() => charactersList)
 
@@ -83,5 +84,33 @@ export const useCharactersStore = defineStore('charactersStore', () => {
         charactersInfo.value = value;
     }
 
-    return { addCharacterToList, setCharacterDetail, addPage, setCharactersInfo, charactersList, characterDetail, pages, charactersInfo }
+    async function setCharactersResults(page: string) {
+        charactersResults.value = [];
+        let pageInt = parseInt(page);
+        let variables = {
+            page: pageInt
+        }
+
+        if (pages.value.includes(page)) {
+            for (let i: string | number = (pageInt * 20) - 19; i <= (pageInt * 20); i++) {
+                let char: Character = charactersList.value.find(char => char.id == i)
+                charactersResults.value.push(char)
+            }
+
+        } else {
+            const { data } = await useAsyncQuery(queryGetCharacters, variables);
+            console.log(data.value)
+            charactersResults.value = data.value.characters.results;
+            charactersInfo.value = data.value.characters.info;
+
+            charactersResults.value.forEach(char => addCharacterToList(page, char));
+            addPage(page);
+
+            if(!data) {
+                throw createError({ status: 404, statusMessage: 'Characters not found', fatal: true })
+            }
+        }
+    }
+
+    return { setCharactersResults,  addCharacterToList, setCharacterDetail, addPage, setCharactersInfo, charactersResults, charactersList, characterDetail, pages, charactersInfo }
 });
