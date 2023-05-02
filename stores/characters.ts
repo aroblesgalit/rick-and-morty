@@ -25,10 +25,6 @@ interface Character {
 const queryGetCharacters = gql`
     query getCharacters($page: Int) {
         characters(page: $page) {
-            info {
-                count
-                pages
-            },
             results {
                 id
                 name
@@ -46,6 +42,17 @@ const queryGetCharacters = gql`
                     name
                     air_date
                 }
+            }
+        }
+    }
+`
+
+const queryGetCharactersInfo = gql `
+    query getCharacters($page: Int) {
+        characters(page: $page) {
+            info {
+                count
+                pages
             }
         }
     }
@@ -79,10 +86,22 @@ export const useCharactersStore = defineStore('charactersStore', () => {
         characterDetail.value = filterChar[0];
     }
 
-    function setCharactersInfo(value: Object) {
-        if(isEmpty(charactersInfo.value))
-        charactersInfo.value = value;
+    // function setCharactersInfo(value: Object) {
+    //     if(isEmpty(charactersInfo.value))
+    //     charactersInfo.value = value;
+    // }
+
+    async function setCharactersInfo(page: string) {
+        let pageInt = parseInt(page);
+        let variables = {
+            page: pageInt
+        }
+        const { data } = await useAsyncQuery(queryGetCharactersInfo, variables);
+        charactersInfo.value = data.value.characters.info;
+        console.log('hi')
     }
+
+    setCharactersInfo('1');
 
     async function setCharactersResults(page: string) {
         charactersResults.value = [];
@@ -101,7 +120,7 @@ export const useCharactersStore = defineStore('charactersStore', () => {
             const { data } = await useAsyncQuery(queryGetCharacters, variables);
 
             charactersResults.value = data.value.characters.results;
-            charactersInfo.value = data.value.characters.info;
+            // charactersInfo.value = data.value.characters.info;
 
             charactersResults.value.forEach(char => addCharacterToList(page, char));
             addPage(page);

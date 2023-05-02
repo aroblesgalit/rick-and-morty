@@ -6,6 +6,7 @@
                 <ul class="flex gap-4">
                     <NuxtLink to="/">Home</NuxtLink>
                     <NuxtLink to="/page/1">Characters</NuxtLink>
+                    <NuxtLink to="/games">Games</NuxtLink>
                 </ul>
             </nav>
         </header>
