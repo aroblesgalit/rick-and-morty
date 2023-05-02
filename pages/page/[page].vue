@@ -1,7 +1,7 @@
 <template>
     <div>
         <CharacterCards :results="charactersResults" />
-        <Pagination :page="page" :info="charactersInfo" :results="charactersResults" />
+        <Pagination v-if="charactersResults.length > 0" :page="page" :info="charactersInfo" :results="charactersResults" />
     </div>
 </template>
 
