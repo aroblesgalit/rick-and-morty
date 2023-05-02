@@ -98,7 +98,6 @@ export const useCharactersStore = defineStore('charactersStore', () => {
         }
         const { data } = await useAsyncQuery(queryGetCharactersInfo, variables);
         charactersInfo.value = data.value.characters.info;
-        console.log('hi')
     }
 
     setCharactersInfo('1');
