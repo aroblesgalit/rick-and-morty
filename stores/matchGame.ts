@@ -11,7 +11,15 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     const cards: Ref<Card[]> = ref([]);
 
-    function addCards(characters: Card[]) {
+    function setCards(characters: Card[]) {
+        // Import characters store for pages, charactersList, and charactersInfo
+        // Get random number within charactersInfo pages value
+        // Check if page is in pages
+            // If so, get random numbers within charactersList based on page number
+                // Get 3 total and 2 variations of each (change id values)
+                // Store into cards const
+            // If not, make a query call and add values to charactersList, also add page to pages
+                // Then do what's in the "If so" logic
         cards.value.push(...characters);
     }
 
@@ -27,5 +35,5 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         cards.value[card2Index].matched = true;
     }
 
-    return { cards, addCards, flipCard, matchCards}
+    return { cards, setCards, flipCard, matchCards}
 });
