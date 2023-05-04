@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useCharactersStore } from './characters'
 
 interface Card {
     id: string,
@@ -8,6 +9,7 @@ interface Card {
 }
 
 export const useMatchGameStore = defineStore('matchGameStore', () => {
+    const { pages, charactersList, charactersInfo } = useCharactersStore();
 
     const cards: Ref<Card[]> = ref([]);
 
