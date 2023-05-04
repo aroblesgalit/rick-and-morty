@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useCharactersStore } from './characters'
+import { storeToRefs } from 'pinia'
 
 interface Card {
     id: string,
@@ -9,14 +10,16 @@ interface Card {
 }
 
 export const useMatchGameStore = defineStore('matchGameStore', () => {
-    const { pages, charactersList, charactersInfo } = useCharactersStore();
+    const charactersStore = useCharactersStore();
+    const { pages, charactersList, charactersInfo } = storeToRefs(charactersStore);
 
     const cards: Ref<Card[]> = ref([]);
 
     function setCards(characters: Card[]) {
         // Import characters store for pages, charactersList, and charactersInfo
         // Get random number within charactersInfo pages value
-        // Check if page is in pages
+        let randomNum = Math.random() * ( parseInt(charactersInfo.value.pages) - 1 ) + 1;
+        // Check if randomNum is in pages
             // If so, get random numbers within charactersList based on page number
                 // Get 3 total and 2 variations of each (change id values)
                 // Store into cards const
