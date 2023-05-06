@@ -16,7 +16,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     const cards: Ref<Card[]> = ref([]);
 
-    function setCards(characters: Card[]) {
+    function setCards() {
         // Import characters store for pages, charactersList, and charactersInfo
         // Get random number within charactersInfo pages value
         let randomPage = Math.random() * ( parseInt(charactersInfo.value.pages) - 1 ) + 1;
@@ -46,7 +46,6 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         }
             // If not, make a query call and add values to charactersList, also add page to pages
                 // Then do what's in the "If so" logic
-        cards.value.push(...characters);
     }
 
     function flipCard(card: Card) {
