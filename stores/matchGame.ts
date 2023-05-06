@@ -22,34 +22,30 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         let randomPage = Math.random() * ( parseInt(charactersInfo.value.pages) - 1 ) + 1;
         // Check if randomNum is in pages
             // If so, get random numbers within charactersList based on page number
-        if (pages.value.includes(randomPage.toString())) {
                 // Get 3 total and 2 variations of each (change id values)
-            setCharactersResults(randomPage.toString());
-            let selection = [...charactersResults.value];
-            for (let i = 1; i <= 3; i++) {
-                let randomIndex = Math.floor(Math.random() * selection.length);
-                let card = selection[randomIndex];
-                let newCardA = {
-                    id: card.id + 'a',
-                    image: card.image,
-                    flipped: false,
-                    matched: false
-                }
-                let newCardB = {
-                    id: card.id + 'b',
-                    image: card.image,
-                    flipped: false,
-                    matched: false
-                }
-                // Store into cards const
-                cards.value.push(newCardA, newCardB);
-                selection.splice(randomIndex, 1);
+        setCharactersResults(randomPage.toString());
+        let selection = [...charactersResults.value];
+        for (let i = 1; i <= 3; i++) {
+            let randomIndex = Math.floor(Math.random() * selection.length);
+            let card = selection[randomIndex];
+            let newCardA = {
+                id: card.id + 'a',
+                image: card.image,
+                flipped: false,
+                matched: false
             }
-                
-        } else {
+            let newCardB = {
+                id: card.id + 'b',
+                image: card.image,
+                flipped: false,
+                matched: false
+            }
+            // Store into cards const
+            cards.value.push(newCardA, newCardB);
+            selection.splice(randomIndex, 1);
+        }
             // If not, make a query call and add values to charactersList, also add page to pages
                 // Then do what's in the "If so" logic
-        }
         cards.value.push(...characters);
     }
 
