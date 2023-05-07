@@ -6,7 +6,12 @@
 </template>
 
 <script setup>
+import { useCharactersStore } from '../stores/characters'
 
+const charactersStore = useCharactersStore();
+const { setCharactersInfo } = charactersStore;
+
+setCharactersInfo('1');
 </script>
 
 <style scoped>

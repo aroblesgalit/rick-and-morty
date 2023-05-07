@@ -100,8 +100,6 @@ export const useCharactersStore = defineStore('charactersStore', () => {
         charactersInfo.value = data.value.characters.info;
     }
 
-    setCharactersInfo('1');
-
     async function setCharactersResults(page: string) {
         charactersResults.value = [];
         let pageInt = parseInt(page);

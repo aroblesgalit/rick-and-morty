@@ -5,7 +5,14 @@
 </template>
 
 <script setup>
+import { useMatchGameStore } from '../../stores/matchGame'
+import { storeToRefs } from 'pinia'
 
+const matchGameStore = useMatchGameStore();
+const { setCards } = matchGameStore;
+const { cards } = storeToRefs(matchGameStore);
+
+setCards();
 </script>
 
 <style lang="scss" scoped>
