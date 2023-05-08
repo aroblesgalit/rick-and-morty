@@ -1,6 +1,13 @@
 <template>
     <div class="grid grid-cols-4 gap-6">
-        <div v-for="card in cards" :id="card.id" :key="card.id" :class="[{flipped: card.flipped}]" class="card rounded-lg overflow-hidden shadow-md h-full relative bg-transparent cursor-pointer">
+        <div 
+            v-for="card in cards" 
+            :id="card.id" 
+            :key="card.id" 
+            :class="[{flipped: card.flipped}]" 
+            class="card rounded-lg overflow-hidden shadow-md h-full relative bg-transparent cursor-pointer"
+            @click="flipCard(card)"
+        >
             <div class="card-inner relative w-full h-full text-center">
                 <div class="card-front absolute w-full h-full">
                     <img src="https://preview.redd.it/x498howiltl71.gif?format=png8&s=d1c048cf6e8e9863f60e390f628a75fffd592e08" alt="" class="w-full">
@@ -18,7 +25,7 @@ import { useMatchGameStore } from '../../stores/matchGame'
 import { storeToRefs } from 'pinia'
 
 const matchGameStore = useMatchGameStore();
-const { setCards } = matchGameStore;
+const { setCards, flipCard } = matchGameStore;
 const { cards } = storeToRefs(matchGameStore);
 
 setCards();

@@ -67,6 +67,10 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     }
 
     function flipCard(card: Card) {
+        // filter flipped cards
+        // if 2 are flipped, check if they are the same by image url
+        // if so, keep them flipped
+        // if not, flip them back over
         let cardIndex = cards.value.findIndex(item => item.id == card.id);
         cards.value[cardIndex].flipped = !cards.value[cardIndex].flipped;
     }
