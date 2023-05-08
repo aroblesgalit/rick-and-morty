@@ -18,6 +18,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     async function setCards() {
         try {
+            cards.value = [];
             // Import characters store for pages, charactersList, and charactersInfo
             // Get random number within charactersInfo pages value
             let randomPage = Math.random() * ( parseInt(charactersInfo.value.pages) - 1 ) + 1;
