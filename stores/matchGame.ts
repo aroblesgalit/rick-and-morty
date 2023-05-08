@@ -29,26 +29,37 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                     // Then do what's in the "If so" logic
             await setCharactersResults(randomPage.toString());
             let selection = [...charactersResults.value];
-            for (let i = 1; i <= 3; i++) {
+            let tempCards = [];
+            for (let i = 1; i <= 4; i++) {
                 let randomIndex = Math.floor(Math.random() * selection.length);
                 let card = selection[randomIndex];
 
                 let newCardA = {
-                    id: card.id + 'a',
+                    id: card.id + '-a',
                     image: card.image,
                     flipped: false,
                     matched: false
                 }
                 let newCardB = {
-                    id: card.id + 'b',
+                    id: card.id + '-b',
                     image: card.image,
                     flipped: false,
                     matched: false
                 }
-                // Store into cards const
-                cards.value.push(newCardA, newCardB);
+                // Store into temp cards array
+                tempCards.push(newCardA, newCardB);
                 selection.splice(randomIndex, 1);
             }
+            // Shuffle cards and store into state
+            let curIndex = tempCards.length;
+            let ranIndex;
+            while (curIndex != 0) {
+                ranIndex = Math.floor(Math.random() * curIndex);
+                curIndex--;
+
+                [tempCards[curIndex], tempCards[ranIndex]] = [tempCards[ranIndex], tempCards[curIndex]];
+            }
+            cards.value = tempCards;
         } catch (error) {
             throw createError({ status: 404, statusMessage: 'Please try again.', fatal: true })
         }

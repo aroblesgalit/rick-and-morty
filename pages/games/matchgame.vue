@@ -1,6 +1,8 @@
 <template>
-    <div v-for="card in cards" :id="card.id" class="card rounded-lg overflow-hidden shadow-md h-full relative">
-        <img class="w-full" :src="card.image" alt="character card">
+    <div class="grid grid-cols-4 gap-6">
+        <div v-for="card in cards" :id="card.id" :key="card.id" class="card rounded-lg overflow-hidden shadow-md h-full relative">
+            <img class="w-full" :src="card.image" alt="character card">
+        </div>
     </div>
 </template>
 
