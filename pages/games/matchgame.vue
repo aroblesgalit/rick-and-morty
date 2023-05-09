@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid grid-cols-4 gap-3 md:gap-6 md:max-w-5xl mx-auto">
         <div 
             v-for="card in cards" 
             :id="card.id" 
