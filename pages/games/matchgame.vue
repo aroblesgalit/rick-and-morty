@@ -1,5 +1,5 @@
 <template>
-    <div class="md:max-w-5xl mx-auto">
+    <div class="md:max-w-3xl mx-auto">
         <div class="mb-6">
             <button @click="setCards('easy')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Easy</button>
             <button @click="setCards('medium')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Medium</button>
