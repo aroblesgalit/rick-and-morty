@@ -16,10 +16,24 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
+    const cardsCount: Ref<number> = ref(4)
 
-    async function setCards() {
+    async function setCards(mode: string) {
         try {
             cards.value = [];
+            switch (mode) {
+                case 'easy':
+                    cardsCount.value = 4;
+                    break;
+                case 'medium':
+                    cardsCount.value = 6;
+                    break;
+                case 'hard':
+                    cardsCount.value = 8;
+                    break;
+                default:
+                    cardsCount.value = 4;
+            }
             // Import characters store for pages, charactersList, and charactersInfo
             // Get random number within charactersInfo pages value
             let randomPage = Math.random() * ( parseInt(charactersInfo.value.pages) - 1 ) + 1;
@@ -31,7 +45,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
             await setCharactersResults(randomPage.toString());
             let selection = [...charactersResults.value];
             let tempCards = [];
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= cardsCount.value; i++) {
                 let randomIndex = Math.floor(Math.random() * selection.length);
                 let card = selection[randomIndex];
 
@@ -100,7 +114,6 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                 currentFlipped.value = [];
             }, 2000);
         }
-        
     }
 
     return { cards, setCards, flipCard, matchCards}
