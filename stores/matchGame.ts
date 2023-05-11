@@ -16,7 +16,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
-    const cardsCount: Ref<number> = ref(4)
+    const cardsCount: Ref<number> = ref(4);
 
     async function setCards(mode: string) {
         try {
@@ -107,6 +107,11 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
             cards.value[card1Index].matched = true;
             cards.value[card2Index].matched = true;
             currentFlipped.value = [];
+            if (cards.value.filter(item => item.matched == true).length == cards.value.length) {
+                setTimeout(() => {
+                    alert('You won! Play again.')
+                }, 1000);
+            }
         } else {
             setTimeout(() => {
                 cards.value[card1Index].flipped = false;
