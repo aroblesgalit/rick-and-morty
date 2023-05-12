@@ -12,7 +12,7 @@ interface Card {
 export const useMatchGameStore = defineStore('matchGameStore', () => {
     const charactersStore = useCharactersStore();
     const { setCharactersResults } = charactersStore;
-    const { pages, charactersResults, charactersInfo } = storeToRefs(charactersStore);
+    const { charactersResults, charactersInfo } = storeToRefs(charactersStore);
 
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
