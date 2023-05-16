@@ -17,9 +17,13 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
     const cardsCount: Ref<number> = ref(4);
+    const timer: Ref<number> = ref(0);
+    const isNewGame: Ref<boolean> = ref(true);
+    const timerInterval;
 
     async function setCards(mode: string) {
         try {
+            clearInterval(timerInterval);
             cards.value = [];
             switch (mode) {
                 case 'easy':
@@ -82,6 +86,10 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     }
 
     function flipCard(card: Card) {
+        if (isNewGame) {
+            setTimer();
+            isNewGame.value = false;
+        }
         // filter flipped cards
         // if 2 are flipped, check if they are the same by image url
         // if so, keep them flipped
@@ -109,7 +117,8 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
             currentFlipped.value = [];
             if (cards.value.filter(item => item.matched == true).length == cards.value.length) {
                 setTimeout(() => {
-                    alert('You won! Play again.')
+                    clearInterval(timerInterval);
+                    alert('You won! Play again.');
                 }, 1000);
             }
         } else {
@@ -119,6 +128,17 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                 currentFlipped.value = [];
             }, 2000);
         }
+    }
+
+    function setTimer() {
+        let start = new Date();
+        let now;
+        let timeElapsed;
+        timerInterval = setInterval(() => {
+            now = new Date()
+            timeElapsed = now.getTime() - start.getTime();
+            timer.value = timeElapsed / 1000;
+        }, 1000)
     }
 
     return { cards, setCards, flipCard, matchCards}
