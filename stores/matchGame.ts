@@ -19,11 +19,13 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     const cardsCount: Ref<number> = ref(4);
     const timer: Ref<number> = ref(0);
     const isNewGame: Ref<boolean> = ref(true);
+    let timerInterval;
 
     async function setCards(mode: string) {
         try {
             isNewGame.value = true;
-            // clearInterval(timerInterval);
+            clearInterval(timerInterval);
+            clearTimer();
             cards.value = [];
             switch (mode) {
                 case 'easy':
@@ -116,8 +118,8 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
             cards.value[card2Index].matched = true;
             currentFlipped.value = [];
             if (cards.value.filter(item => item.matched == true).length == cards.value.length) {
+                clearInterval(timerInterval);
                 setTimeout(() => {
-                    // clearInterval(timerInterval);
                     alert('You won! Play again.');
                 }, 1000);
             }
@@ -126,7 +128,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                 cards.value[card1Index].flipped = false;
                 cards.value[card2Index].flipped = false;
                 currentFlipped.value = [];
-            }, 2000);
+            }, 1500);
         }
     }
 
@@ -134,11 +136,15 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         let start = new Date();
         let now;
         let timeElapsed;
-        setInterval(() => {
+        timerInterval = setInterval(() => {
             now = new Date()
             timeElapsed = now.getTime() - start.getTime();
             timer.value = Math.round(timeElapsed / 1000);
         }, 1000)
+    }
+
+    function clearTimer() {
+        timer.value = 0;
     }
 
     return { cards, timer, setCards, flipCard, matchCards}
