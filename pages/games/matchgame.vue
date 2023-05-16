@@ -1,9 +1,12 @@
 <template>
     <div class="md:max-w-3xl mx-auto">
-        <div class="mb-6">
-            <button @click="setCards('easy')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Easy</button>
-            <button @click="setCards('medium')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Medium</button>
-            <button @click="setCards('hard')" class="rounded bg-[#00b5cc] text-white px-2 py-1 hover:bg-[#e89ac7] text-sm">Hard</button>
+        <div class="mb-6 flex justify-between">
+            <div>
+                <button @click="setCards('easy')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Easy</button>
+                <button @click="setCards('medium')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Medium</button>
+                <button @click="setCards('hard')" class="rounded bg-[#00b5cc] text-white px-2 py-1 hover:bg-[#e89ac7] text-sm">Hard</button>
+            </div>
+            <div>{{ timer }} seconds</div>
         </div>
         <div class="grid grid-cols-4 gap-3 md:gap-6">
             <div 
@@ -34,7 +37,7 @@ import { storeToRefs } from 'pinia'
 
 const matchGameStore = useMatchGameStore();
 const { setCards, flipCard } = matchGameStore;
-const { cards } = storeToRefs(matchGameStore);
+const { cards, timer } = storeToRefs(matchGameStore);
 
 setCards('easy');
 </script>
