@@ -27,6 +27,14 @@
                 </div>
             </div>
         </div>
+        <div class="mt-6" v-if="cards.length > 0">
+            <h3 class="text-lg font-semibold mb-6">You times:</h3>
+            <div class="grid grid-cols-6 gap-3">
+                <span v-for="times in bestTimes">
+                    {{ Math.floor(times / 60) }}m {{ (times % 60) < 10 ? '0' : '' }}{{ (times % 60) }}s
+                </span>
+            </div>
+        </div>
     </div>
     
 </template>
@@ -37,7 +45,7 @@ import { storeToRefs } from 'pinia'
 
 const matchGameStore = useMatchGameStore();
 const { setCards, flipCard } = matchGameStore;
-const { cards, timer } = storeToRefs(matchGameStore);
+const { cards, timer, bestTimes } = storeToRefs(matchGameStore);
 
 setCards('easy');
 </script>

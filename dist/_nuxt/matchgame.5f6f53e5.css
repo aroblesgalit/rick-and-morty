@@ -1,0 +1,1 @@
+.card[data-v-f20bafdf]{perspective:1000px}.card-inner[data-v-f20bafdf]{transform-style:preserve-3d;transition:transform .6s}.card.flipped .card-inner[data-v-f20bafdf]{transform:rotateY(180deg)}.card-back[data-v-f20bafdf],.card-front[data-v-f20bafdf]{-webkit-backface-visibility:hidden;backface-visibility:hidden}.card-back[data-v-f20bafdf]{transform:rotateY(180deg)}
