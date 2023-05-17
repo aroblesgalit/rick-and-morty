@@ -22,6 +22,12 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     const isNewGame: Ref<boolean> = ref(true);
     let timerInterval;
 
+    // const convertedTimer = computed(() => {
+    //     let minutes: number = Math.floor(timer.value / (60 * 1000));
+    //     let seconds = ((timer.value % (60 * 1000)) / 1000).toFixed(0);
+    //     return parseInt(seconds) == 60 ? (minutes + 1) + "m 00s" : minutes + "m " + (parseInt(seconds) < 10 ? "0" : "") + parseInt(seconds) + "s"
+    // });
+
     async function setCards(mode: string) {
         try {
             isNewGame.value = true;
@@ -153,5 +159,5 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         bestTimes.value.push(time)
     }
 
-    return { cards, timer, setCards, flipCard, matchCards}
+    return { cards, timer, bestTimes, setCards, flipCard, matchCards}
 });

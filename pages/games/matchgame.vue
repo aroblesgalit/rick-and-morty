@@ -6,7 +6,7 @@
                 <button @click="setCards('medium')" class="rounded bg-[#00b5cc] text-white px-2 py-1 mr-2 hover:bg-[#e89ac7] text-sm">Medium</button>
                 <button @click="setCards('hard')" class="rounded bg-[#00b5cc] text-white px-2 py-1 hover:bg-[#e89ac7] text-sm">Hard</button>
             </div>
-            <div>{{ timer }} seconds</div>
+            <div>{{ Math.floor(timer / 60) }}m {{ (timer % 60) < 10 ? '0' : '' }}{{ (timer % 60) }}s</div>
         </div>
         <div class="grid grid-cols-4 gap-3 md:gap-6">
             <div 
@@ -38,6 +38,10 @@ import { storeToRefs } from 'pinia'
 const matchGameStore = useMatchGameStore();
 const { setCards, flipCard } = matchGameStore;
 const { cards, timer } = storeToRefs(matchGameStore);
+
+let minutes = Math.floor(timer.value / (60 * 1000));
+let seconds = ((timer.value % (60 * 1000)) / 1000).toFixed(0);
+let convertedTimer = seconds == 60 ? (minutes + 1) + "m 00s" : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s"
 
 setCards('easy');
 </script>
