@@ -17,6 +17,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
     const cardsCount: Ref<number> = ref(4);
+    const bestTimes: Ref<number[]> = ref([])
     const timer: Ref<number> = ref(0);
     const isNewGame: Ref<boolean> = ref(true);
     let timerInterval;
@@ -121,6 +122,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                 clearInterval(timerInterval);
                 setTimeout(() => {
                     alert('You won! Play again.');
+                    addBestTime(timer.value);
                 }, 1000);
             }
         } else {
@@ -145,6 +147,10 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
 
     function clearTimer() {
         timer.value = 0;
+    }
+
+    function addBestTime(time: number) {
+        bestTimes.value.push(time)
     }
 
     return { cards, timer, setCards, flipCard, matchCards}
