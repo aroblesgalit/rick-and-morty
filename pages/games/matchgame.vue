@@ -39,10 +39,6 @@ const matchGameStore = useMatchGameStore();
 const { setCards, flipCard } = matchGameStore;
 const { cards, timer } = storeToRefs(matchGameStore);
 
-let minutes = Math.floor(timer.value / (60 * 1000));
-let seconds = ((timer.value % (60 * 1000)) / 1000).toFixed(0);
-let convertedTimer = seconds == 60 ? (minutes + 1) + "m 00s" : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s"
-
 setCards('easy');
 </script>
 
