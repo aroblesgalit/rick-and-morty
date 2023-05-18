@@ -7,6 +7,11 @@ interface Card {
     image: string,
     flipped: boolean,
     matched: boolean
+} 
+
+interface Time {
+    seconds: number,
+    mode: string
 }
 
 export const useMatchGameStore = defineStore('matchGameStore', () => {
@@ -17,8 +22,9 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
     const cards: Ref<Card[]> = ref([]);
     const currentFlipped: Ref<Card[]> = ref([]);
     const cardsCount: Ref<number> = ref(4);
-    const bestTimes: Ref<number[]> = ref([])
+    const bestTimes: Ref<Time[]> = ref([])
     const timer: Ref<number> = ref(0);
+    const gameMode: Ref<string> = ref('');
     const isNewGame: Ref<boolean> = ref(true);
     let timerInterval;
 
@@ -36,15 +42,19 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
             cards.value = [];
             switch (mode) {
                 case 'easy':
+                    gameMode.value = 'easy';
                     cardsCount.value = 4;
                     break;
                 case 'medium':
+                    gameMode.value = 'medium';
                     cardsCount.value = 6;
                     break;
                 case 'hard':
+                    gameMode.value = 'hard'
                     cardsCount.value = 8;
                     break;
                 default:
+                    gameMode.value = 'easy';
                     cardsCount.value = 4;
             }
             // Import characters store for pages, charactersList, and charactersInfo
@@ -128,7 +138,7 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
                 clearInterval(timerInterval);
                 setTimeout(() => {
                     alert('You won! Play again.');
-                    addBestTime(timer.value);
+                    addBestTime(timer.value, gameMode.value);
                 }, 1000);
             }
         } else {
@@ -155,8 +165,11 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         timer.value = 0;
     }
 
-    function addBestTime(time: number) {
-        bestTimes.value.push(time)
+    function addBestTime(time: number, mode: string) {
+        bestTimes.value.push({
+            seconds: time,
+            mode: mode
+        });
     }
 
     return { cards, timer, bestTimes, setCards, flipCard, matchCards}
