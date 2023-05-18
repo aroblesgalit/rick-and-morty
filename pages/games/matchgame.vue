@@ -30,8 +30,8 @@
         <div class="mt-6" v-if="cards.length > 0">
             <h3 class="text-lg font-semibold mb-6">You times:</h3>
             <div class="grid grid-cols-6 gap-3">
-                <span v-for="times in bestTimes">
-                    {{ Math.floor(times / 60) }}m {{ (times % 60) < 10 ? '0' : '' }}{{ (times % 60) }}s
+                <span v-for="time in bestTimes">
+                    {{ time.mode }} {{ Math.floor(time.seconds / 60) }}m {{ (time.seconds % 60) < 10 ? '0' : '' }}{{ (time.seconds % 60) }}s
                 </span>
             </div>
         </div>
