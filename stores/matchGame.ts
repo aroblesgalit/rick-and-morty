@@ -10,6 +10,7 @@ interface Card {
 } 
 
 interface Time {
+    id: Date,
     seconds: number,
     mode: string
 }
@@ -165,8 +166,9 @@ export const useMatchGameStore = defineStore('matchGameStore', () => {
         timer.value = 0;
     }
 
-    function addBestTime(time: number, mode: string) {
+    function addBestTime(time: number, mode: string, id: Date = new Date()) {
         bestTimes.value.push({
+            id: id,
             seconds: time,
             mode: mode
         });
