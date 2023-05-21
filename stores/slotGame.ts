@@ -37,5 +37,11 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
         }
     }
 
+    function spinReels(tokens: Token[]) {
+        // 3 times
+        // randomize index 0 to 2 and stop after 2000ms, 2500ms, 3000ms
+        // store each one in an array then render on screen
+    }
+
     return { tokens, setTokens }
 });
