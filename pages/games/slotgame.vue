@@ -3,13 +3,12 @@
         <div class="grid grid-cols-3 gap-6">
             <div
                 v-for="token in reels"
-                :id="token.id"
-                :key="token.id"
                 class="token rounded-lg overflow-hidden"
             >
                 <img :src="token.image" alt="character card" />
             </div>
         </div>
+        <button @click="spinReel(0)">Spin</button>
     </div>
 </template>
 
@@ -18,7 +17,7 @@ import { useSlotGameStore } from '~~/stores/slotGame';
 import { storeToRefs } from 'pinia';
 
 const slotGameStore = useSlotGameStore();
-const { setTokens } = slotGameStore;
+const { setTokens, spinReel } = slotGameStore;
 const { tokens, reels } = storeToRefs(slotGameStore);
 
 setTokens();
