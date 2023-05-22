@@ -2,7 +2,7 @@
     <div class="md:max-w-3xl mx-auto">
         <div class="grid grid-cols-3 gap-6">
             <div
-                v-for="token in tokens"
+                v-for="token in reels"
                 :id="token.id"
                 :key="token.id"
                 class="token rounded-lg overflow-hidden"
@@ -19,7 +19,7 @@ import { storeToRefs } from 'pinia';
 
 const slotGameStore = useSlotGameStore();
 const { setTokens } = slotGameStore;
-const { tokens } = storeToRefs(slotGameStore);
+const { tokens, reels } = storeToRefs(slotGameStore);
 
 setTokens();
 </script>

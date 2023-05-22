@@ -12,10 +12,12 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
     const { charactersResults, charactersInfo } = storeToRefs(charactersStore);
 
     const tokens: Ref<Token[]> = ref([]);
+    const reels: Ref<Token[]> = ref([]);
 
     async function setTokens() {
         try {
             tokens.value = [];
+            reels.value = [];
 
             let randomPage = Math.random() * (parseInt(charactersInfo.value.pages) - 1) + 1;
 
@@ -32,6 +34,7 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
                 tokens.value.push(newToken);
                 selection.splice(randomIndex, 1);
             }
+            reels.value.push(tokens.value[0], tokens.value[0], tokens.value[0])
         } catch (error) {
             throw createError({ status: 404, statusMessage: 'Please try again.', fatal: true })
         }
@@ -39,9 +42,12 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
 
     function spinReels(tokens: Token[]) {
         // 3 times
+        for (let i = 0; i <= 2; i++) {
+
+        }
         // randomize index 0 to 2 and stop after 2000ms, 2500ms, 3000ms
         // store each one in an array then render on screen
     }
 
-    return { tokens, setTokens }
+    return { tokens, reels, setTokens }
 });
