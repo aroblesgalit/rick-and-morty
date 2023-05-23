@@ -53,7 +53,6 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
                     ranIndex--;
                 }
             }
-            console.log(ranIndex)
             reels.value[index] = tokens.value[ranIndex];
             prevIndex = ranIndex;
         }, 100);
@@ -68,8 +67,8 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
 
     function handleSpin() {
         spinReel(0, 2000);
-        spinReel(1, 2500);
-        spinReel(2, 3000);
+        spinReel(1, 2250);
+        spinReel(2, 2500);
     }
 
     return { tokens, reels, setTokens, handleSpin }
