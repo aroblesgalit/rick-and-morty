@@ -40,23 +40,37 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
         }
     }
 
-    function spinReel(index: number) {
-        console.log('spinning..')
-        // 3 times
-        let tempTokens = [...tokens.value]
-        let curIndex = tempTokens.length;
+    function spinReel(index: number, timeout: number) {
+        let prevIndex = 0;
         let ranIndex;
-        while (curIndex != 0) {
-            ranIndex = Math.floor(Math.random() * curIndex);
-            reels.value[index] = tempTokens[ranIndex];
-            console.log(tempTokens[ranIndex]);
-            tempTokens.splice(ranIndex, 1);
-            curIndex = tempTokens.length;
-        }
-        
+
+        let spinInterval = setInterval(() => {
+            ranIndex = Math.floor(Math.random() * tokens.value.length);
+            if (ranIndex == prevIndex) {
+                if (ranIndex < tokens.value.length - 1) {
+                    ranIndex++;
+                } else {
+                    ranIndex--;
+                }
+            }
+            console.log(ranIndex)
+            reels.value[index] = tokens.value[ranIndex];
+            prevIndex = ranIndex;
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(spinInterval);
+        }, timeout);
+
         // randomize index 0 to 2 and stop after 2000ms, 2500ms, 3000ms
         // store each one in an array then render on screen
     }
 
-    return { tokens, reels, setTokens, spinReel }
+    function handleSpin() {
+        spinReel(0, 2000);
+        spinReel(1, 2500);
+        spinReel(2, 3000);
+    }
+
+    return { tokens, reels, setTokens, handleSpin }
 });

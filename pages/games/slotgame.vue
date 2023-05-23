@@ -8,7 +8,7 @@
                 <img :src="token.image" alt="character card" />
             </div>
         </div>
-        <button @click="spinReel(0)">Spin</button>
+        <button @click="handleSpin">Spin</button>
     </div>
 </template>
 
@@ -17,8 +17,8 @@ import { useSlotGameStore } from '~~/stores/slotGame';
 import { storeToRefs } from 'pinia';
 
 const slotGameStore = useSlotGameStore();
-const { setTokens, spinReel } = slotGameStore;
-const { tokens, reels } = storeToRefs(slotGameStore);
+const { setTokens, handleSpin } = slotGameStore;
+const { reels } = storeToRefs(slotGameStore);
 
 setTokens();
 </script>
