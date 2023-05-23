@@ -13,6 +13,7 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
 
     const tokens: Ref<Token[]> = ref([]);
     const reels: Ref<Token[]> = ref([]);
+    const isSpinning: Ref<boolean> = ref(false);
 
     async function setTokens() {
         try {
@@ -66,10 +67,14 @@ export const useSlotGameStore = defineStore('slotGameStore', () => {
     }
 
     function handleSpin() {
+        isSpinning.value = true;
         spinReel(0, 2000);
         spinReel(1, 2250);
         spinReel(2, 2500);
+        setTimeout(() => {
+            isSpinning.value = false;
+        }, 2750);
     }
 
-    return { tokens, reels, setTokens, handleSpin }
+    return { reels, isSpinning, setTokens, handleSpin }
 });

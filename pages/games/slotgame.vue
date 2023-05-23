@@ -8,7 +8,7 @@
                 <img :src="token.image" alt="character card" />
             </div>
         </div>
-        <button @click="handleSpin" class="rounded bg-[#00b5cc] text-white px-2 py-1 hover:bg-[#e89ac7] text-sm">Spin</button>
+        <button @click="handleSpin" :class="{ 'pointer-events-none': isSpinning }" class="rounded bg-[#00b5cc] text-white px-2 py-1 hover:bg-[#e89ac7] text-sm">Spin</button>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import { storeToRefs } from 'pinia';
 
 const slotGameStore = useSlotGameStore();
 const { setTokens, handleSpin } = slotGameStore;
-const { reels } = storeToRefs(slotGameStore);
+const { reels, isSpinning } = storeToRefs(slotGameStore);
 
 setTokens();
 </script>
